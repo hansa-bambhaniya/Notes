@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/all"
+            android:enabled="true"
+            android:icon="@drawable/bottom_all_icon"
+            android:title="All" />
+        <item
+            android:id="@+id/completed"
+            android:enabled="true"
+            android:icon="@drawable/bottom_completed_icon"
+            android:title="Completed" />
+        <item
+            android:id="@+id/pending"
+            android:enabled="true"
+            android:icon="@drawable/bottom_pending_icon"
+            android:title="Pending" />
+</menu>

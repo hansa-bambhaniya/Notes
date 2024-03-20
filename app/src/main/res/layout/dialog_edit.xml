@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="32dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="291dp"
+            android:padding="3dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/delete_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="90dp"
+            android:text="Update task"
+            android:textStyle="bold"
+            android:textSize="30dp"
+             />
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/edit_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_edit_corner"
+        android:layout_margin="25dp"
+        android:padding="10dp"
+        />
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="update"
+        android:textSize="19sp"
+        android:layout_gravity="center"
+        android:textColor="#4CAF50"
+        android:backgroundTint="#D2EDD6"
+        android:layout_marginBottom="25dp"
+        />
+
+
+</LinearLayout>

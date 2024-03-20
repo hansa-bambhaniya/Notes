@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/search_icon_background"
+        android:padding="8dp"
+        android:layout_marginTop="20dp"
+        android:elevation="20dp"
+        android:src="@drawable/alert_dialog_delete"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Are you sure to delete?"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp">
+        <TextView
+            android:id="@+id/d_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:text="Cancel"
+            android:textColor="#3A9CE9"
+            android:layout_marginLeft="65dp"
+
+            />
+        <TextView
+            android:id="@+id/d_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/d_cancel"
+            android:text="Delete"
+            android:textColor="#FF01"
+            android:textSize="17sp"
+            android:layout_marginLeft="70dp"
+            />
+    </RelativeLayout>
+</LinearLayout>

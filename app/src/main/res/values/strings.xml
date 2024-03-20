@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="f_name">Hi Ivan</string>
+    <string name="s_name">Your day looks like this:</string>
+    <string name="t1">0 total task</string>
+    <string name="t2">0 task completed</string>
+    <string name="t3">0 task pending</string>
+    <string name="all_task">All tasks</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="replay_name">Replay</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
