@@ -16,14 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Notes"
         tools:targetApi="31">
-        <activity
-            android:name=".BubbleActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:label="Reminder"
-            android:allowEmbedded="true"
-            android:documentLaunchMode="always"
-            android:resizeableActivity="true"
-            android:exported="false" />
+       
         <activity
             android:name=".MainActivity"
             android:exported="true"
