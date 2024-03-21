@@ -224,7 +224,7 @@ class AllAdapter(
             .addAction(replyAction)
             .setAutoCancel(true)
             .build()
-
+            
         // show the reply notification
         val notificationManager = NotificationManagerCompat.from(context)
         notificationManager.notify(NOTIF_ID,build)
