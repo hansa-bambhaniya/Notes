@@ -43,7 +43,6 @@ class AllAdapter(
     private var filteredItems: List<Notes> = notesList
 
     val CHANNEL_ID = "channelID"
-    val CHANNEL_NAME = "channelName"
     var NOTIF_ID = 1
 
     companion object {
@@ -107,11 +106,10 @@ class AllAdapter(
 
             listItem.check.setOnCheckedChangeListener { _, isChecked ->
                 item.isCompleted = isChecked
-//                if (isChecked){
-//                    createNotificationChannel(listItem.check.context)
-//                    showReplyMessage(listItem.check.context,"Item is completed : ${item.notesName}")
-//
-//                }
+               if (isChecked){
+                   createBubbleNotificationChannel(listItem.check.context)
+                   showBubbleNotification(listItem.check.context,"Item is completed : ${item.notesName}")
+               }
                 itemClickInterface.onItemChecked(notesList[position])
             }
             listItem.check.isChecked = item.isCompleted
@@ -170,99 +168,8 @@ class AllAdapter(
         this.notesList.addAll(list)
         notifyDataSetChanged()
     }
-
-    // Show notification....
-    private fun createNotificationChannel(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance)
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    fun showReplyMessage(context: Context, Text: String) {
-
-        val intent = Intent(context, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0,intent, PendingIntent.FLAG_MUTABLE)
-
-        // Direct reply message notification
-        val directReplyIntent = Intent(context,ReplyReceiver::class.java)
-
-        val directReplyPendingIntent = PendingIntent.getBroadcast(
-            context,
-            0,
-            directReplyIntent,
-            PendingIntent.FLAG_MUTABLE)
-
-        // create a RemoteInput for handling the text input
-        val remoteInput = androidx.core.app.RemoteInput.Builder("key_text_reply")
-            .setLabel("types...")
-            .build()
-
-        // create notification action with ReplyInput
-        val replyAction = NotificationCompat.Action.Builder(
-            R.drawable.ic_reply,
-            "Reply",
-            directReplyPendingIntent
-        ).addRemoteInput(remoteInput)
-            .build()
-
-        // create notification messageStyle
-        val person = Person.Builder().setName("Notification").build()
-        val notificationStyle = NotificationCompat.MessagingStyle(person)
-            .addMessage("hyy", System.currentTimeMillis(),person)
-
-        val build = NotificationCompat.Builder(context,CHANNEL_ID)
-            .setSmallIcon(R.drawable.notifications_icon)
-            .setContentTitle("Notification")
-            .setContentText(Text)
-            .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .addAction(replyAction)
-            .setAutoCancel(true)
-            .build()
-
-        val notificationManager = NotificationManagerCompat.from(context)
-        notificationManager.notify(NOTIF_ID,build)
-    }
-
-    @SuppressLint("MissingPermission")
-    fun showNotification(context: Context,Text:String){
-        val SUMMARY_ID = 0
-        val GROUP_KEY_WORK_EMAIL = "com.example.notes.Notification"
-
-        val intent = Intent(context, MainActivity::class.java)
-        intent.putExtra("fragment_to_open", AllFragment::class.java.name)
-
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_MUTABLE)
-
-        val build = NotificationCompat.Builder(context,CHANNEL_ID)
-            .setSmallIcon(R.drawable.notifications_icon)
-            .setContentTitle("Notification")
-            .setContentText(Text)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .setGroup(GROUP_KEY_WORK_EMAIL)
-            .build()
-
-        val summaryNotification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.notifications_icon)
-            .setStyle(NotificationCompat.InboxStyle()
-                .setSummaryText("Notification"))
-            .setGroup(GROUP_KEY_WORK_EMAIL)
-            .setGroupSummary(true)
-            .build()
-
-        with(NotificationManagerCompat.from(context)){
-            notify(NOTIF_ID++,build)
-            notify(SUMMARY_ID,summaryNotification)
-        }
-    }
-
-
+    
+    // Create bubble notification channel
     private fun createBubbleNotificationChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Bubble Channel"
@@ -274,11 +181,11 @@ class AllAdapter(
 
             val notificationManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
             notificationManager.createNotificationChannel(channel)
         }
     }
 
+    // Create bubble notification
     @SuppressLint("MissingPermission")
     private fun showBubbleNotification(context: Context,text:String) {
         // Create an intent to open the activity when the bubble is tapped
@@ -286,7 +193,6 @@ class AllAdapter(
         val pendingIntent: PendingIntent =
             PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
-        // Build the notification
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setContentIntent(pendingIntent)
             .setContentTitle("Notification")
@@ -295,7 +201,7 @@ class AllAdapter(
             .setLargeIcon(BitmapFactory.decodeResource(context.resources,R.drawable.notifi))
             .setAutoCancel(true)
 
-        // Show the notification
+        // Show the bubble notification
         with(NotificationManagerCompat.from(context)) {
             notify(NOTIF_ID++, builder.build())
         }
@@ -323,6 +229,7 @@ class AllAdapter(
             }
         }
     }
+    
      private fun hideKeyboard(view: View){
          val i = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
          i.hideSoftInputFromWindow(view.windowToken,0)
