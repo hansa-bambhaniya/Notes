@@ -37,7 +37,7 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
             )
             notificationManager.createNotificationChannel(channel)
         }
-        // Show the notification
+        // Show the push notification
         notificationManager.notify(0,notificationBuilder.build())
     }
 }
