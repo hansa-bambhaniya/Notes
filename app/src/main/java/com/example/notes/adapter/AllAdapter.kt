@@ -229,6 +229,7 @@ class AllAdapter(
             }
         }
     }
+    
      private fun hideKeyboard(view: View){
          val i = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
          i.hideSoftInputFromWindow(view.windowToken,0)
