@@ -19,6 +19,7 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
             sendNotification(title,body)
         }
     }
+    
     private fun sendNotification(title: String?,body: String?){
         //Customize notification creation
         val notificationBuilder = NotificationCompat.Builder(this,"channel_id")
@@ -37,7 +38,7 @@ class MyFirebaseMessagingService :FirebaseMessagingService() {
             )
             notificationManager.createNotificationChannel(channel)
         }
-        // Show the notification
+        // Show the push notification
         notificationManager.notify(0,notificationBuilder.build())
     }
 }
