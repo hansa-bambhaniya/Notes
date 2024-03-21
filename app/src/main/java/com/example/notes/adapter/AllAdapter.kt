@@ -163,6 +163,7 @@ class AllAdapter(
     fun setAllClick(i: Boolean) {
             isAll = i
     }
+    
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(list:List<Notes>){
         this.notesList.clear()
