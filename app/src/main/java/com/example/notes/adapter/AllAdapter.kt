@@ -45,6 +45,8 @@ class AllAdapter(
     val CHANNEL_ID = "channelID"
     val CHANNEL_NAME = "channelName"
     var NOTIF_ID = 1
+    val SUMMARY_ID = 0
+    val GROUP_KEY_WORK_EMAIL = "com.example.notes.Notification"
 
     companion object {
         const val VIEW_TYPE_ONE = 1 // All
@@ -183,9 +185,6 @@ class AllAdapter(
     // Create notification
     @SuppressLint("MissingPermission")
     fun showGroupNotification(context: Context,Text:String){
-        val SUMMARY_ID = 0
-        val GROUP_KEY_WORK_EMAIL = "com.example.notes.Notification"
-
         val intent = Intent(context, MainActivity::class.java)
         intent.putExtra("fragment_to_open", AllFragment::class.java.name)
 
